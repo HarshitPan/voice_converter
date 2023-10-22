@@ -1,13 +1,13 @@
 import speech_recognition as sr
 import os
-def speechRecongnition():
+def speechRecongnition(ln):
     speech=sr.Recognizer()
     try:
         with sr.Microphone() as mic:
             print("here");
-            speech.adjust_for_ambient_noise(mic,duration=1)
+            speech.adjust_for_ambient_noise(mic,duration=5)
             audio = speech.listen(mic)
-            text = speech.recognize_google(audio)
+            text = speech.recognize_google(audio,language="")
             text = text.lower()
             os.system("clear")
             print(f"Recongnized {text}")

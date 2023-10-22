@@ -1,19 +1,30 @@
-import speech_recognition as sr
-speech=sr.Recognizer()
-i=0
-while i<20:
-    try:
-       with sr.Microphone() as mic:
-           print("here");
-           speech.adjust_for_ambient_noise(mic,duration=0.2)
-           audio = speech.listen(mic)
-           text = speech.recognize_google(audio)
-           text = text.lower()
-           print(f"Recongnized {text}")
-    except sr.UnknownValueError():
-        speech=sr.Recognizer()
-        continue
-    except:
-        print("error")
-        break
+import tkinter as tk
+from speech import speechRecongnition
+c=0
+i=1
+
+
+root = tk.Tk()
+label_height=400
+label_width=500
+label = tk.Label(root, text="", height=label_height, width=label_width)
+def button_click():
+    label.config(text="speak in microphone")
+    global c
+    c=1
+    global i
     i+=1
+    print("button clicked...")
+
+if(c==1):
+    print("inside c")
+    c=0
+    englishText=speechRecongnition()
+    label.config(text=englishText)
+
+root.title("Basic Window")
+button = tk.Button(root, text="Click Me!", command=button_click)
+button.pack(pady=20)
+label.pack()
+root.geometry("400x300")
+root.mainloop()

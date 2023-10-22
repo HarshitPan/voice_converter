@@ -1,30 +1,41 @@
 import tkinter as tk
 from speech import speechRecongnition
+from translate import toHindi
 c=0
 i=1
 
 
-root = tk.Tk()
-label_height=400
-label_width=500
-label = tk.Label(root, text="", height=label_height, width=label_width)
-def button_click():
-    label.config(text="speak in microphone")
-    global c
-    c=1
+
+englishText=""
+TranslatedText=""
+def readFromSpeech():
+    # label1.config(text="speak in microphone")
     global i
     i+=1
     print("button clicked...")
-
-if(c==1):
-    print("inside c")
-    c=0
+    global englishText
     englishText=speechRecongnition()
-    label.config(text=englishText)
+    label1.config(text=englishText)
 
+def TranslateText():
+    global englishText
+    global TranslatedText
+    TranslatedText=toHindi(englishText)
+    label2.config(text=TranslatedText.text)
+    label3.config(text=TranslatedText.pronunciation)
+
+root = tk.Tk()
+label_width=500
+label1 = tk.Label(root, text="", width=label_width)
 root.title("Basic Window")
-button = tk.Button(root, text="Click Me!", command=button_click)
-button.pack(pady=20)
-label.pack()
+button1 = tk.Button(root, text="Microphone", command=readFromSpeech)
+button1.pack(pady=20)
+label1.pack()
+button2 = tk.Button(root, text="Translate", command=TranslateText)
+button2.pack(pady=20)
+label2 = tk.Label(root, text="", width=label_width)
+label2.pack()
+label3 = tk.Label(root, text="", width=label_width)
+label3.pack()
 root.geometry("400x300")
 root.mainloop()

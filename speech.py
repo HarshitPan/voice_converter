@@ -5,7 +5,7 @@ def speechRecongnition():
     try:
         with sr.Microphone() as mic:
             print("here");
-            speech.adjust_for_ambient_noise(mic,duration=0.05)
+            speech.adjust_for_ambient_noise(mic,duration=1)
             audio = speech.listen(mic)
             text = speech.recognize_google(audio)
             text = text.lower()
@@ -15,6 +15,6 @@ def speechRecongnition():
     except sr.UnknownValueError():
         speech=sr.Recognizer()
         return "error"
-    except Exception:
+    except TypeError:
         return "error"
 

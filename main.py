@@ -2,8 +2,8 @@ import tkinter as tk
 from speech import speechRecongnition,speakerText
 from translate import convertTo
 
-desLang_array={"hindi":"hi","english":"en","malyalam":"ml"}
-srcLang_array={"english":"","hindi":"hi-IN","malyalam":"ml-IN"}
+desLang_array={"hindi":"hi","english":"en","malyalam":"ml","tamil":"ta","telugu":"te","urdu":"ur","punjabi":"pa"}
+srcLang_array={"english":"","hindi":"hi-IN","malyalam":"ml-IN","tamil":"ta-IN","telugu":"te-IN","urdu":"ur-PK","punjabi":"pa-IN"}
 
 englishText=""
 TranslatedText=""

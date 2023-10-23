@@ -28,13 +28,18 @@ def readFromSpeech():
     global englishText,desLang,srcLang          
     print(desLang.get())
     print(srcLang.get())
-    englishText=speechRecongnition(srcLang_array[srcLang.get()])
+    try:
+        englishText=speechRecongnition(srcLang_array[srcLang.get()])
+    except Exception as e:
+        text_speech.config(state=tk.NORMAL)
+        text_speech.insert(tk.END, "some error occured... try again")
+        text_speech.config(state=tk.DISABLED)
+    else:
+        text_speech.config(state=tk.NORMAL)
+        text_speech.insert(tk.END, englishText)
+        text_speech.config(state=tk.DISABLED)
     print(desLang.get())
     print(srcLang.get())
-    text_speech.config(state=tk.NORMAL)
-    text_speech.insert(tk.END, englishText)
-    text_speech.config(state=tk.DISABLED)
-
 def TranslateText():
 
     global englishText  

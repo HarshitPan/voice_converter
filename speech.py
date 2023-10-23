@@ -1,5 +1,4 @@
 import speech_recognition as sr
-import os
 def speechRecongnition(ln):
     speech=sr.Recognizer()
     try:
@@ -9,7 +8,6 @@ def speechRecongnition(ln):
             audio = speech.listen(mic)
             text = speech.recognize_google(audio,language=ln)
             text = text.lower()
-            os.system("clear")
             print(f"Recongnized {text}")
             return text
     except sr.UnknownValueError():

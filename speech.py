@@ -7,7 +7,7 @@ def speechRecongnition(ln):
             print("here");
             speech.adjust_for_ambient_noise(mic,duration=5)
             audio = speech.listen(mic)
-            text = speech.recognize_google(audio,language="")
+            text = speech.recognize_google(audio,language=ln)
             text = text.lower()
             os.system("clear")
             print(f"Recongnized {text}")

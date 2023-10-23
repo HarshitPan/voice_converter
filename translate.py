@@ -1,10 +1,6 @@
 from googletrans import Translator
 translate=Translator()
 
-def toHindi(text):
+def convertTo(text,s,d):
     global translate
-    return translate.translate(text,dest="hi")
-
-def toMalyalam(text):
-    global translate
-    return translate.translate(text,dest="ml")
+    return translate.translate(text,dest=d,src=s)

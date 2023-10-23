@@ -1,4 +1,5 @@
 import speech_recognition as sr
+import pyttsx3
 def speechRecongnition(ln):
     speech=sr.Recognizer()
     try:
@@ -15,4 +16,9 @@ def speechRecongnition(ln):
         return "error"
     except TypeError:
         return "error"
-
+def speakerText(text,ln):
+    speaker=pyttsx3.init()
+    speaker.setProperty('rate',150)
+    speaker.setProperty('voice',ln)
+    speaker.say(text)
+    speaker.runAndWait()

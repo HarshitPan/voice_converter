@@ -1,5 +1,5 @@
 import tkinter as tk
-from speech import speechRecongnition
+from speech import speechRecongnition,speakerText
 from translate import convertTo
 
 desLang_array={"hindi":"hi","english":"en","malyalam":"ml"}
@@ -64,7 +64,8 @@ def TranslateText():
     else:
         text_pronun.insert(tk.END, "No pronunciation...")
     text_pronun.config(state=tk.DISABLED)
-
+def speakerFunc():
+    speakerText(TranslatedText.text,desLang_array[desLang.get()])
 root = tk.Tk()
 label_width=500
 
@@ -97,6 +98,8 @@ text_trans = tk.Text(canvas,height=5, width=100, wrap=tk.WORD,state=tk.DISABLED)
 text_trans.pack(expand=True, fill='both', padx=10, pady=10)
 text_pronun = tk.Text(canvas,height=5, width=100, wrap=tk.WORD,state=tk.DISABLED)
 text_pronun.pack(expand=True, fill='both', padx=10, pady=10)
+speakerButton=tk.Button(canvas,text="Speaker",command=speakerFunc)
+speakerButton.pack(pady=20)
 reset_button=tk.Button(canvas,text="Reset",command=reset)
 reset_button.pack(pady=20)
 root.mainloop()

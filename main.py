@@ -6,15 +6,14 @@ desLang_array={"hindi":"hi","english":"en","malyalam":"ml"}
 srcLang_array={"english":"","hindi":"hi-IN","malyalam":"ml-IN"}
 
 englishText=""
-desLang="hindi"
-srcLang="english"
 TranslatedText=""
 def reset():
-    global englishText,desLang,srcLang,TranslatedText
+    global englishText,TranslatedText
     englishText=TranslatedText=""
     text_speech.config(state=tk.NORMAL)
     text_speech.delete(1.0, tk.END)
     text_speech.config(state=tk.DISABLED)
+
     text_trans.config(state=tk.NORMAL)
     text_trans.delete(1.0, tk.END)
     text_trans.config(state=tk.DISABLED)
@@ -26,12 +25,12 @@ def readFromSpeech():
     # label1.config(text="speak in microphone")
     print("button clicked...")
     reset()
-    global englishText
-    print(desLang)
-    print(srcLang)
-    englishText=speechRecongnition(srcLang_array[srcLang])
-    print(desLang)
-    print(srcLang)
+    global englishText,desLang,srcLang          
+    print(desLang.get())
+    print(srcLang.get())
+    englishText=speechRecongnition(srcLang_array[srcLang.get()])
+    print(desLang.get())
+    print(srcLang.get())
     text_speech.config(state=tk.NORMAL)
     text_speech.insert(tk.END, englishText)
     text_speech.config(state=tk.DISABLED)
@@ -40,7 +39,7 @@ def TranslateText():
 
     global englishText  
     global TranslatedText
-    TranslatedText=convertTo(englishText,desLang_array[srcLang],desLang_array[desLang])
+    TranslatedText=convertTo(englishText,desLang_array[srcLang.get()],desLang_array[desLang.get()])
 
     text_trans.config(state=tk.NORMAL)
     text_trans.delete(1.0, tk.END)
@@ -55,11 +54,20 @@ def TranslateText():
     text_trans.config(state=tk.DISABLED)
 
     text_pronun.config(state=tk.NORMAL)
-    text_pronun.insert(tk.END, TranslatedText.pronunciation)
+    if(TranslatedText.pronunciation != None):
+        text_pronun.insert(tk.END, TranslatedText.pronunciation)
+    else:
+        text_pronun.insert(tk.END, "No pronunciation...")
     text_pronun.config(state=tk.DISABLED)
 
 root = tk.Tk()
 label_width=500
+
+desLang=tk.StringVar()
+desLang.set("hindi")
+srcLang=tk.StringVar()
+srcLang.set("english")
+
 root.title("Translator")
 canvas=tk.Canvas(root)
 canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)

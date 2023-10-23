@@ -18,6 +18,8 @@ def speechRecongnition(ln):
         return "error"
 def speakerText(text,ln):
     speaker=pyttsx3.init()
+    voices = speaker.getProperty('voices')
+    speaker.setProperty('voice'.voice[0].id)
     speaker.setProperty('rate',150)
     speaker.setProperty('voice',ln)
     speaker.say(text)

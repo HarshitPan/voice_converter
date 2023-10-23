@@ -2,8 +2,8 @@ import tkinter as tk
 from speech import speechRecongnition
 from translate import toHindi
 
-desLang_array={"hindi":"hi"}
-srcLang_array=[["English",]]
+desLang_array={"hindi":"hi","english":"en","malyalam":"ml"}
+srcLang_array={"english":"","hindi":"hi-IN","malyalam":"ml"}
 
 englishText=""
 desLang="hi"
@@ -14,9 +14,11 @@ def reset():
     englishText=srcLang=TranslatedText=""
     desLang="hi"
     text_speech.config(state=tk.NORMAL)
-    text_speech.insert(tk.END, "")
+    text_speech.delete(1.0, tk.END)
     text_speech.config(state=tk.DISABLED)
-
+    text_trans.config(state=tk.NORMAL)
+    text_trans.delete(1.0, tk.END)
+    text_trans.config(state=tk.DISABLED)
 def readFromSpeech():
     # label1.config(text="speak in microphone")
     print("button clicked...")
@@ -32,8 +34,14 @@ def TranslateText():
     global englishText
     global TranslatedText
     TranslatedText=toHindi(englishText)
-    label2.config(text=TranslatedText.text)
-    label3.config(text=TranslatedText.pronunciation)
+
+    text_trans.config(state=tk.NORMAL)
+    text_trans.insert(tk.END, TranslatedText.text)
+    text_trans.config(state=tk.DISABLED)
+
+    text_pronun.config(state=tk.NORMAL)
+    text_pronun.insert(tk.END, TranslatedText.pronunciation)
+    text_pronun.config(state=tk.DISABLED)
 
 root = tk.Tk()
 label_width=500
@@ -44,10 +52,9 @@ text_speech = tk.Text(root,height=5, width=100, wrap=tk.WORD,state=tk.DISABLED)
 text_speech.pack(expand=True, fill='both', padx=10, pady=10)
 button2 = tk.Button(root, text="Translate", command=TranslateText)
 button2.pack(pady=20)
-
-label2 = tk.Label(root, text="", width=label_width)
-label2.pack()
-label3 = tk.Label(root, text="", width=label_width)
-label3.pack()
+text_trans = tk.Text(root,height=5, width=100, wrap=tk.WORD,state=tk.DISABLED)
+text_trans.pack(expand=True, fill='both', padx=10, pady=10)
+text_pronun = tk.Text(root,height=5, width=100, wrap=tk.WORD,state=tk.DISABLED)
+text_pronun.pack(expand=True, fill='both', padx=10, pady=10)
 root.geometry("400x300")
 root.mainloop()

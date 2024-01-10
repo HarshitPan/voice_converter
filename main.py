@@ -65,7 +65,7 @@ def TranslateText():
         text_pronun.insert(tk.END, "No pronunciation...")
     text_pronun.config(state=tk.DISABLED)
 def speakerFunc():
-    speakerText(TranslatedText.text,desLang_array[desLang.get()])
+    speakerText(TranslatedText.text,desLang.get())
 root = tk.Tk()
 label_width=500
 
@@ -89,9 +89,11 @@ button1 = tk.Button(canvas, text="Microphone", command=readFromSpeech)
 button1.pack(pady=20)
 text_speech = tk.Text(canvas,height=5, width=100, wrap=tk.WORD,state=tk.DISABLED)
 text_speech.pack(expand=True, fill='both', padx=10, pady=10)
+
 for i in desLang_array:
     rbtn=tk.Radiobutton(canvas,text=i, variable=desLang, value=i)
     rbtn.pack(anchor=tk.W)
+
 button2 = tk.Button(canvas, text="Translate", command=TranslateText)
 button2.pack(pady=20)
 text_trans = tk.Text(canvas,height=5, width=100, wrap=tk.WORD,state=tk.DISABLED)

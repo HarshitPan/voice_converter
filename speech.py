@@ -19,6 +19,12 @@ def speechRecongnition(ln):
 def speakerText(text,ln):
     speaker=pyttsx3.init()
     speaker.setProperty('rate',150)
+    voice=speaker.getProperty('voices')
+    # for i in voice:
+    #     if i.gender==None:
+    #         print(i)
     speaker.setProperty('voice',ln)
     speaker.say(text)
     speaker.runAndWait()
+#testing 
+#speakerText("hello this is harshit and i just want to enter","hindi")

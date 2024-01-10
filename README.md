@@ -1,5 +1,9 @@
 # voice_converter
 **Prerequisites -:**
+
+pip install -r requirements.txt
+
+
 Python3 <br>
 pyaudio - pip install pyaudio <br> 
 SpeechRecognition - pip install SpeechRecognition <br>
